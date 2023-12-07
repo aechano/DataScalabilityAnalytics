@@ -47,47 +47,47 @@ df = df[np.abs(stats.zscore(df["duration"])) < 3]
 
 df.to_csv("sample2.csv")
 
-# Data preprocessing
-# For simplicity, let's assume that 'Reason' is the only relevant feature
-X = pd.get_dummies(df[['reason']], drop_first=True)
-y = df['duration']
-
-# Split the data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Choose a regression model
-model = LinearRegression()
-
-# Train the model
-model.fit(X_train, y_train)
-
-# Predict on the test set
-y_pred = model.predict(X_test)
-
-# Evaluate the model
-mse = mean_squared_error(y_test, y_pred)
-print(f"Mean Squared Error: {mse}")  # Extract feature names and coefficients
-feature_names = X.columns
-coefficients = model.coef_
-
-# Create a bar plot
-plt.figure(figsize=(10, 6))
-plt.bar(feature_names, coefficients)
-plt.xlabel('Reasons for Complaints')
-plt.ylabel('Coefficient Value')
-plt.title('Impact of Reasons on Predicted Duration')
-plt.show()
-
-plt.figure(figsize=(10, 6))
-plt.scatter(y_test, y_pred)
-plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2)
-plt.xlabel('Actual Durations')
-plt.ylabel('Predicted Durations')
-plt.title('Actual vs. Predicted Durations')
-plt.show()
-
-
-# Interpret the model (analyze coefficients or feature importances)
-print("Model Coefficients:", model.coef_)
-
-# df.to_csv("sample.csv")
+# # Data preprocessing
+# # For simplicity, let's assume that 'Reason' is the only relevant feature
+# X = pd.get_dummies(df[['reason']], drop_first=True)
+# y = df['duration']
+#
+# # Split the data
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+#
+# # Choose a regression model
+# model = LinearRegression()
+#
+# # Train the model
+# model.fit(X_train, y_train)
+#
+# # Predict on the test set
+# y_pred = model.predict(X_test)
+#
+# # Evaluate the model
+# mse = mean_squared_error(y_test, y_pred)
+# print(f"Mean Squared Error: {mse}")  # Extract feature names and coefficients
+# feature_names = X.columns
+# coefficients = model.coef_
+#
+# # Create a bar plot
+# plt.figure(figsize=(10, 6))
+# plt.bar(feature_names, coefficients)
+# plt.xlabel('Reasons for Complaints')
+# plt.ylabel('Coefficient Value')
+# plt.title('Impact of Reasons on Predicted Duration')
+# plt.show()
+#
+# plt.figure(figsize=(10, 6))
+# plt.scatter(y_test, y_pred)
+# plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], linestyle='--', color='red', linewidth=2)
+# plt.xlabel('Actual Durations')
+# plt.ylabel('Predicted Durations')
+# plt.title('Actual vs. Predicted Durations')
+# plt.show()
+#
+#
+# # Interpret the model (analyze coefficients or feature importances)
+# print("Model Coefficients:", model.coef_)
+#
+# # df.to_csv("sample.csv")
